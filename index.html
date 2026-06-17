@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Ammireddy Sai Praneeth — Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.44.0/tabler-icons.min.css">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #ffffff;
+      --bg2: #f7f7f5;
+      --bg3: #f0f0ec;
+      --text: #1a1a1a;
+      --text2: #555550;
+      --text3: #888880;
+      --border: rgba(0,0,0,0.1);
+      --border2: rgba(0,0,0,0.18);
+      --blue: #185FA5;
+      --blue-light: #E6F1FB;
+      --blue-mid: #B5D4F4;
+      --blue-dark: #0C447C;
+      --teal-light: #E1F5EE;
+      --teal-mid: #9FE1CB;
+      --teal-dark: #085041;
+      --purple-light: #EEEDFE;
+      --purple-mid: #AFA9EC;
+      --purple-dark: #3C3489;
+      --radius-md: 8px;
+      --radius-lg: 12px;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #1a1a18;
+        --bg2: #222220;
+        --bg3: #2a2a28;
+        --text: #f0f0ec;
+        --text2: #aaa9a0;
+        --text3: #666660;
+        --border: rgba(255,255,255,0.1);
+        --border2: rgba(255,255,255,0.18);
+        --blue: #378ADD;
+        --blue-light: #042C53;
+        --blue-mid: #0C447C;
+        --blue-dark: #B5D4F4;
+        --teal-light: #04342C;
+        --teal-mid: #085041;
+        --teal-dark: #9FE1CB;
+        --purple-light: #26215C;
+        --purple-mid: #534AB7;
+        --purple-dark: #CECBF6;
+      }
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg3);
+      color: var(--text);
+      min-height: 100vh;
+      padding: 2rem 1rem;
+    }
+
+    .port {
+      max-width: 700px;
+      margin: 0 auto;
+      background: var(--bg);
+      border-radius: 16px;
+      border: 0.5px solid var(--border);
+      padding: 2.5rem 2.5rem;
+    }
+
+    @media (max-width: 600px) {
+      .port { padding: 1.5rem 1.25rem; }
+      body { padding: 0; }
+      .port { border-radius: 0; border: none; min-height: 100vh; }
+    }
+
+    .hero { padding-bottom: 2rem; border-bottom: 0.5px solid var(--border); }
+    .hero-tag { font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text3); margin-bottom: 0.75rem; }
+    .hero-name { font-size: 40px; font-weight: 600; color: var(--text); line-height: 1.1; margin-bottom: 0.5rem; }
+    .hero-name span { color: var(--blue); }
+    .hero-tagline { font-size: 15px; color: var(--text2); line-height: 1.7; max-width: 520px; margin-bottom: 1.5rem; }
+    .hero-links { display: flex; gap: 10px; flex-wrap: wrap; }
+
+    .pill {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: 13px; padding: 6px 14px; border-radius: 999px;
+      border: 0.5px solid var(--border2); color: var(--text2);
+      text-decoration: none; transition: background 0.15s;
+    }
+    .pill:hover { background: var(--bg2); }
+    .pill-accent { background: var(--blue-light); color: var(--blue); border-color: var(--blue-mid); }
+    .pill-accent:hover { background: var(--blue-mid); }
+
+    .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; padding: 1.75rem 0; border-bottom: 0.5px solid var(--border); }
+    @media (max-width: 480px) { .stats { grid-template-columns: 1fr; } }
+    .stat { background: var(--bg2); border-radius: var(--radius-md); padding: 1rem; }
+    .stat-num { font-size: 26px; font-weight: 600; color: var(--blue); }
+    .stat-label { font-size: 12px; color: var(--text2); margin-top: 2px; }
+
+    .nav-wrap { padding: 1.75rem 0 0; border-bottom: 0.5px solid var(--border); }
+    .section-label { font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text3); margin-bottom: 1rem; }
+    .nav { display: flex; gap: 2px; background: var(--bg2); border-radius: var(--radius-md); padding: 4px; margin-bottom: 0; }
+    .nav-btn {
+      flex: 1; padding: 7px 0; font-size: 13px; border: none;
+      background: transparent; color: var(--text2); border-radius: 6px;
+      cursor: pointer; font-family: 'Inter', sans-serif; transition: all 0.15s;
+    }
+    .nav-btn.active {
+      background: var(--bg); color: var(--text); font-weight: 500;
+      border: 0.5px solid var(--border);
+    }
+
+    .tab-content { padding-top: 1.75rem; }
+    .tab-panel { display: none; }
+    .tab-panel.active { display: block; }
+
+    .project-card {
+      background: var(--bg); border: 0.5px solid var(--border);
+      border-radius: var(--radius-lg); padding: 1.25rem; margin-bottom: 12px;
+      transition: border-color 0.15s;
+    }
+    .project-card:hover { border-color: var(--border2); }
+    .project-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 1rem; margin-bottom: 0.5rem; }
+    .project-title { font-size: 15px; font-weight: 500; color: var(--text); }
+    .project-tech { font-size: 12px; color: var(--text3); margin-top: 2px; }
+    .project-desc { font-size: 13px; color: var(--text2); line-height: 1.65; margin-bottom: 0.75rem; }
+
+    .metric-row { display: flex; gap: 12px; margin-bottom: 0.75rem; flex-wrap: wrap; }
+    .metric { text-align: center; background: var(--blue-light); border-radius: var(--radius-md); padding: 8px 16px; }
+    .metric-val { font-size: 17px; font-weight: 600; color: var(--blue); }
+    .metric-lbl { font-size: 10px; color: var(--blue); opacity: 0.75; }
+
+    .tag-row { display: flex; gap: 6px; flex-wrap: wrap; align-items: center; }
+    .tag { font-size: 11px; padding: 3px 10px; border-radius: 999px; background: var(--bg2); color: var(--text2); border: 0.5px solid var(--border); }
+    .tag-blue { background: var(--blue-light); color: var(--blue-dark); border-color: var(--blue-mid); }
+    .tag-teal { background: var(--teal-light); color: var(--teal-dark); border-color: var(--teal-mid); }
+
+    .link-btn {
+      display: inline-flex; align-items: center; gap: 5px;
+      font-size: 12px; color: var(--blue); text-decoration: none;
+      padding: 4px 10px; border-radius: 999px;
+      border: 0.5px solid var(--blue-mid); background: var(--blue-light);
+      transition: background 0.15s;
+    }
+    .link-btn:hover { background: var(--blue-mid); }
+    .figma-btn { color: var(--purple-dark); border-color: var(--purple-mid); background: var(--purple-light); }
+    .figma-btn:hover { background: var(--purple-mid); }
+
+    .exp-row { display: flex; gap: 1rem; margin-bottom: 1.25rem; padding-bottom: 1.25rem; border-bottom: 0.5px solid var(--border); }
+    .exp-row:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+    .exp-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--blue); margin-top: 6px; flex-shrink: 0; }
+    .exp-title { font-size: 14px; font-weight: 500; color: var(--text); margin-bottom: 2px; }
+    .exp-meta { font-size: 12px; color: var(--text3); margin-bottom: 6px; }
+    .exp-body { font-size: 13px; color: var(--text2); line-height: 1.6; }
+
+    .skills-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    @media (max-width: 480px) { .skills-grid { grid-template-columns: 1fr; } }
+    .skill-group { background: var(--bg2); border-radius: var(--radius-md); padding: 1rem; }
+    .skill-group-title { font-size: 12px; font-weight: 500; color: var(--text2); margin-bottom: 8px; display: flex; align-items: center; gap: 6px; }
+    .skill-list { display: flex; flex-wrap: wrap; gap: 6px; }
+    .skill-pill { font-size: 12px; padding: 4px 10px; border-radius: 999px; background: var(--bg); border: 0.5px solid var(--border); color: var(--text); }
+
+    .cert-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    @media (max-width: 480px) { .cert-grid { grid-template-columns: 1fr; } }
+    .cert { background: var(--bg2); border-radius: var(--radius-md); padding: 0.75rem 1rem; display: flex; align-items: center; gap: 10px; }
+    .cert-icon { font-size: 20px; color: var(--blue); flex-shrink: 0; }
+    .cert-name { font-size: 13px; font-weight: 500; color: var(--text); }
+    .cert-body { font-size: 11px; color: var(--text3); }
+
+    footer { margin-top: 2rem; padding-top: 1.5rem; border-top: 0.5px solid var(--border); text-align: center; font-size: 12px; color: var(--text3); }
+  </style>
+</head>
+<body>
+<div class="port">
+
+  <div class="hero">
+    <p class="hero-tag">Portfolio</p>
+    <h1 class="hero-name">Ammireddy<br><span>Sai Praneeth</span></h1>
+    <p class="hero-tagline">Computer Science graduate with hands-on experience in deep learning, full-stack development, and UI/UX design. Built a deepfake detection model with 90%+ recall.</p>
+    <div class="hero-links">
+      <a class="pill pill-accent" href="mailto:saipraneethammireddy@gmail.com"><i class="ti ti-mail"></i> saipraneethammireddy@gmail.com</a>
+      <a class="pill" href="https://github.com/Praneeth-reddy07" target="_blank"><i class="ti ti-brand-github"></i> GitHub</a>
+      <span class="pill"><i class="ti ti-map-pin"></i> Hyderabad, India</span>
+      <span class="pill"><i class="ti ti-phone"></i> +91 8121391758</span>
+    </div>
+  </div>
+
+  <div class="stats">
+    <div class="stat"><div class="stat-num">81.25%</div><div class="stat-label">Deepfake model accuracy</div></div>
+    <div class="stat"><div class="stat-num">90%+</div><div class="stat-label">Recall on real vs. fake</div></div>
+    <div class="stat"><div class="stat-num">4+</div><div class="stat-label">Projects shipped</div></div>
+  </div>
+
+  <div class="nav-wrap">
+    <p class="section-label">Explore</p>
+    <div class="nav">
+      <button class="nav-btn active" onclick="switchTab('projects', this)">Projects</button>
+      <button class="nav-btn" onclick="switchTab('experience', this)">Experience</button>
+      <button class="nav-btn" onclick="switchTab('skills', this)">Skills</button>
+      <button class="nav-btn" onclick="switchTab('certs', this)">Certifications</button>
+    </div>
+  </div>
+
+  <div class="tab-content">
+
+    <div id="tab-projects" class="tab-panel active">
+      <div class="project-card">
+        <div class="project-top">
+          <div>
+            <div class="project-title">Deepfake Video Detection</div>
+            <div class="project-tech">Python · TensorFlow/Keras · CNN · GRU</div>
+          </div>
+          <span class="tag tag-blue">Final Year</span>
+        </div>
+        <div class="metric-row">
+          <div class="metric"><div class="metric-val">81.25%</div><div class="metric-lbl">Accuracy</div></div>
+          <div class="metric"><div class="metric-val">85%+</div><div class="metric-lbl">Precision</div></div>
+          <div class="metric"><div class="metric-val">90%+</div><div class="metric-lbl">Recall</div></div>
+        </div>
+        <p class="project-desc">Hybrid CNN-GRU model trained on 200 videos. CNN layers extract spatial features from frames; GRU units capture temporal patterns across sequences. Tackled class imbalance and overfitting with augmentation and regularization.</p>
+        <div class="tag-row">
+          <span class="tag">Deep Learning</span><span class="tag">Computer Vision</span><span class="tag">Model Optimization</span>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-top">
+          <div>
+            <div class="project-title">Election Management System</div>
+            <div class="project-tech">Java</div>
+          </div>
+          <span class="tag tag-blue">Open Source</span>
+        </div>
+        <p class="project-desc">End-to-end election management system handling candidate registration, voter authentication, and secure vote submission. Duplicate-prevention logic ensures one vote per voter.</p>
+        <div class="tag-row">
+          <span class="tag">Java</span><span class="tag">Data Integrity</span><span class="tag">Security</span>
+          <a class="link-btn" href="https://github.com/Praneeth-reddy07/Election_System" target="_blank"><i class="ti ti-brand-github"></i> View on GitHub</a>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-top">
+          <div>
+            <div class="project-title">Hotel Menu Website</div>
+            <div class="project-tech">HTML · CSS · JavaScript</div>
+          </div>
+          <span class="tag tag-blue">Open Source</span>
+        </div>
+        <p class="project-desc">Responsive hotel menu website built from scratch with menu listings, pricing, and contact info. Focused on cross-device compatibility and clean CSS design.</p>
+        <div class="tag-row">
+          <span class="tag">Frontend</span><span class="tag">Responsive Design</span>
+          <a class="link-btn" href="https://github.com/Praneeth-reddy07/Hotel-menu" target="_blank"><i class="ti ti-brand-github"></i> View on GitHub</a>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-top">
+          <div>
+            <div class="project-title">Smartwatch App — Figma Prototype</div>
+            <div class="project-tech">Figma · UI/UX Design</div>
+          </div>
+          <span class="tag tag-teal">Design</span>
+        </div>
+        <p class="project-desc">Interactive smartwatch prototype covering home, health tracking, and notifications. Compact layouts suited for wearable displays with clear iconography and intuitive navigation flows.</p>
+        <div class="tag-row">
+          <span class="tag">Wireframing</span><span class="tag">Wearable UI</span>
+          <a class="link-btn figma-btn" href="https://www.figma.com/proto/wLsMNq2gDNnxMv0azoIDNR/Untitled?node-id=1-2&p=f&t=TpJCKNomLkwZtsPQ-1&scaling=scale-down&content-scaling=fixed&page-id=0%3A1" target="_blank"><i class="ti ti-brand-figma"></i> View Prototype</a>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-top">
+          <div>
+            <div class="project-title">BMW Website Interface — Figma Prototype</div>
+            <div class="project-tech">Figma · UI/UX Design</div>
+          </div>
+          <span class="tag tag-teal">Design</span>
+        </div>
+        <p class="project-desc">Premium automotive website prototype with a sleek, modern aesthetic — includes landing, model showcase, and contact sections. Translates brand identity into clean, high-fidelity digital interfaces.</p>
+        <div class="tag-row">
+          <span class="tag">Brand Design</span><span class="tag">High-fidelity</span>
+          <a class="link-btn figma-btn" href="https://www.figma.com/proto/cWGoJuVBu431iNAP0c9Ydt/Untitled?node-id=1-2&p=f&t=TOFBK3lkBLuTouGL-1&scaling=scale-down&content-scaling=fixed&page-id=0%3A1" target="_blank"><i class="ti ti-brand-figma"></i> View Prototype</a>
+        </div>
+      </div>
+    </div>
+
+    <div id="tab-experience" class="tab-panel">
+      <div class="exp-row">
+        <div class="exp-dot" style="background:#378ADD"></div>
+        <div>
+          <div class="exp-title">Data Analytics Training & Internship</div>
+          <div class="exp-meta">Neo Skillz · Apr 2026 – Aug 2026</div>
+          <div class="exp-body">4-month structured programme covering Power BI, Microsoft Excel, and Python for data analysis. Gaining hands-on experience in data cleaning, dashboard creation, and analytical reporting.</div>
+        </div>
+      </div>
+      <div class="exp-row">
+        <div class="exp-dot" style="background:#5DCAA5"></div>
+        <div>
+          <div class="exp-title">AI-ML Virtual Internship</div>
+          <div class="exp-meta">AICTE / EduSkills Foundation · 2023</div>
+          <div class="exp-body">Covered core AI/ML concepts — supervised learning, neural networks, and model evaluation. Built practical understanding of full ML pipelines from data preprocessing to deployment, applied directly in the final year deepfake detection project.</div>
+        </div>
+      </div>
+      <div class="exp-row">
+        <div class="exp-dot" style="background:#ccc"></div>
+        <div>
+          <div class="exp-title">B.Tech in Computer Science Engineering</div>
+          <div class="exp-meta">Sree Vidyanikethan Engineering College, Tirupati · Jan 2021 – May 2025 · CGPA 7.17</div>
+          <div class="exp-body">Graduated with a focus on deep learning, software development, and UI/UX design.</div>
+        </div>
+      </div>
+    </div>
+
+    <div id="tab-skills" class="tab-panel">
+      <div class="skills-grid">
+        <div class="skill-group">
+          <div class="skill-group-title"><i class="ti ti-code"></i> Languages</div>
+          <div class="skill-list">
+            <span class="skill-pill">Python</span><span class="skill-pill">Java</span><span class="skill-pill">SQL</span><span class="skill-pill">HTML</span><span class="skill-pill">CSS</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <div class="skill-group-title"><i class="ti ti-brain"></i> AI / ML</div>
+          <div class="skill-list">
+            <span class="skill-pill">Deep Learning</span><span class="skill-pill">CNN</span><span class="skill-pill">GRU</span><span class="skill-pill">TensorFlow</span><span class="skill-pill">Keras</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <div class="skill-group-title"><i class="ti ti-chart-bar"></i> Data Analytics</div>
+          <div class="skill-list">
+            <span class="skill-pill">Power BI</span><span class="skill-pill">Excel</span><span class="skill-pill">Python</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <div class="skill-group-title"><i class="ti ti-palette"></i> UI/UX & Tools</div>
+          <div class="skill-list">
+            <span class="skill-pill">Figma</span><span class="skill-pill">Git</span><span class="skill-pill">GitHub</span><span class="skill-pill">MS Office</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="tab-certs" class="tab-panel">
+      <div class="cert-grid">
+        <div class="cert">
+          <i class="ti ti-certificate cert-icon"></i>
+          <div><div class="cert-name">Python Essentials 1</div><div class="cert-body">Cisco Networking Academy</div></div>
+        </div>
+        <div class="cert">
+          <i class="ti ti-certificate cert-icon"></i>
+          <div><div class="cert-name">Data Analytics Essentials</div><div class="cert-body">Cisco Networking Academy</div></div>
+        </div>
+        <div class="cert">
+          <i class="ti ti-certificate cert-icon"></i>
+          <div><div class="cert-name">Digital Marketing & E-Commerce</div><div class="cert-body">Google / Coursera</div></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <footer>
+    © 2026 Ammireddy Sai Praneeth · Hyderabad, India
+  </footer>
+
+</div>
+
+<script>
+  function switchTab(name, btn) {
+    document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById('tab-' + name).classList.add('active');
+    btn.classList.add('active');
+  }
+</script>
+</body>
+</html>
